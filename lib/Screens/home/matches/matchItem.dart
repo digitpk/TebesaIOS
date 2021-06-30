@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:spring_button/spring_button.dart';
 
 class MatchItem extends StatelessWidget {
-
   final UserModel otherUser;
 
   MatchItem({@required this.otherUser});
@@ -31,19 +30,16 @@ class MatchItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15.0),
                   image: DecorationImage(
                       image: NetworkImage(otherUser.photos[0]),
-                      fit: BoxFit.cover
-                  ),
+                      fit: BoxFit.cover),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black12,
-                      offset: Offset(1,2),
+                      offset: Offset(1, 2),
                       blurRadius: 5.0,
                     ),
-                  ]
-              ),
+                  ]),
             ),
           ),
-
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -57,21 +53,40 @@ class MatchItem extends StatelessWidget {
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black12,
-                        offset: Offset(1,2),
+                        offset: Offset(1, 2),
                         blurRadius: 5.0,
                       ),
-                    ]
-                ),
+                    ]),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(otherUser.fullName, overflow: TextOverflow.ellipsis ,maxLines: 1, style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.w500, color: Colors.grey[800], letterSpacing: 0.5),),
-                    Text(otherUser.bio, overflow: TextOverflow.ellipsis ,maxLines: 1, style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300, color: Colors.grey[600], letterSpacing: 0.0),),
+                    Text(
+                      otherUser.fullName,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: TextStyle(
+                          fontSize: 17.0,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey[800],
+                          letterSpacing: 0.5),
+                    ),
+                    Text(
+                      otherUser.bio,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: TextStyle(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w300,
+                          color: Colors.grey[600],
+                          letterSpacing: 0.0),
+                    ),
                   ],
                 ),
               ),
-              SizedBox(height: 5.0,),
+              SizedBox(
+                height: 5.0,
+              ),
               SpringButton(
                 SpringButtonType.OnlyScale,
                 Container(
@@ -83,20 +98,29 @@ class MatchItem extends StatelessWidget {
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black12,
-                          offset: Offset(1,2),
+                          offset: Offset(1, 2),
                           blurRadius: 5.0,
                         ),
-                      ]
-                  ),
+                      ]),
                   child: Center(
-                    child: Text('Chat Now', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w700, color: Colors.white, letterSpacing: 1.0),),
+                    child: Text(
+                      'Chat Now',
+                      style: TextStyle(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                          letterSpacing: 1.0),
+                    ),
                   ),
                 ),
-                onTap: (){
-                  _databaseService.removeMatches(FirebaseFirestore.instance.collection('users').doc('${otherUser.uid}').path.toString());
+                onTap: () {
+                  _databaseService.removeMatches(FirebaseFirestore.instance
+                      .collection('users')
+                      .doc('${otherUser.uid}')
+                      .path
+                      .toString());
                 },
               ),
-
             ],
           ),
         ],

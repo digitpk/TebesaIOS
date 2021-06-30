@@ -1,7 +1,7 @@
 import 'package:dating/Models/userAuthModel.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 
-class AuthService{
+class AuthService {
   final auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
 
   //From Firebase User to User
@@ -48,15 +48,15 @@ class AuthService{
   }
 
   //Currently Logged in user
-  Future<String> getCurrentUser() async{
+  Future<String> getCurrentUser() async {
     return (_auth.currentUser).uid;
   }
 
   //Signin with OTP
-  signInWithOTP(smsCode, verId){
+  signInWithOTP(smsCode, verId) {
     print('************ WITH OTP Function ************');
-    auth.AuthCredential authCreds = auth.PhoneAuthProvider.credential(verificationId: verId, smsCode: smsCode);
+    auth.AuthCredential authCreds = auth.PhoneAuthProvider.credential(
+        verificationId: verId, smsCode: smsCode);
     signIn(authCreds);
   }
-
 }

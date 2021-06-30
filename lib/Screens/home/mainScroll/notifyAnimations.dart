@@ -1,11 +1,9 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class NotifyAnimations extends StatefulWidget {
-
   final int animationType;
+
   NotifyAnimations({this.animationType});
 
   @override
@@ -13,7 +11,6 @@ class NotifyAnimations extends StatefulWidget {
 }
 
 class _NotifyAnimationsState extends State<NotifyAnimations> {
-
   @override
   void initState() {
     // TODO: implement initState

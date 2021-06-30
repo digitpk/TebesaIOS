@@ -1,7 +1,4 @@
-import 'dart:async';
-
 import 'package:dating/Models/userModel.dart';
-import 'package:dating/Screens/home/mainScroll/singleUserView.dart';
 import 'package:dating/Screens/home/mainScroll/topPicksItem.dart';
 import 'package:dating/Services/databaseService.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +9,6 @@ class TopPicks extends StatefulWidget {
 }
 
 class _TopPicksState extends State<TopPicks> {
-
   List<UserModel> dates = [];
 
   DatabaseService _databaseService = new DatabaseService();
@@ -24,7 +20,7 @@ class _TopPicksState extends State<TopPicks> {
   @override
   void initState() {
     super.initState();
-    _databaseService.getTopPicksList().then((value){
+    _databaseService.getTopPicksList().then((value) {
       setState(() {
         topPickedUsers = value;
         gettingTopPics = false;
@@ -37,24 +33,27 @@ class _TopPicksState extends State<TopPicks> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: gettingTopPics ? Center(
-        child: CircularProgressIndicator(),
-      ) : Container(
-        padding: EdgeInsets.symmetric(horizontal: 5.0),
-        child: GridView.builder(
-          physics: BouncingScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              mainAxisSpacing: 10.0,
-              crossAxisSpacing: 15.0,
-              crossAxisCount: 2,
-              childAspectRatio: 0.8
-          ),
-          itemBuilder: (_, index) {
-            return TopPicksItem(userModel: topPickedUsers[index],);
-          },
-          itemCount:topPickedUsers.length,
-        ),
-      ),
+      body: gettingTopPics
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : Container(
+              padding: EdgeInsets.symmetric(horizontal: 5.0),
+              child: GridView.builder(
+                physics: BouncingScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisSpacing: 10.0,
+                    crossAxisSpacing: 15.0,
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.8),
+                itemBuilder: (_, index) {
+                  return TopPicksItem(
+                    userModel: topPickedUsers[index],
+                  );
+                },
+                itemCount: topPickedUsers.length,
+              ),
+            ),
     );
   }
 }

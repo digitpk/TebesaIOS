@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-class UserModel{
+class UserModel {
   final String uid;
   final String email;
   final String fullName;
@@ -21,7 +21,7 @@ class UserModel{
     @required this.bio,
   });
 
-  factory UserModel.fromJson(dynamic json){
+  factory UserModel.fromJson(dynamic json) {
     return UserModel(
       uid: json['uid'],
       email: json['email'],
@@ -34,8 +34,7 @@ class UserModel{
     );
   }
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         'uid': uid,
         'email': email,
         'fullName': fullName,
@@ -45,5 +44,4 @@ class UserModel{
         'photos': photos,
         'bio': bio,
       };
-
 }

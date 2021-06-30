@@ -1,5 +1,4 @@
-class PaymentModel{
-
+class PaymentModel {
   final String userId;
   final String invoice;
   final DateTime acceptedDate;
@@ -12,26 +11,39 @@ class PaymentModel{
   final String email;
   final String depositedByName;
 
-  PaymentModel({this.userId, this.invoice, this.acceptedDate, this.bank, this.transactionRef, this.date, this.packageMonth, this.status, this.confirmed, this.email, this.depositedByName});
+  PaymentModel(
+      {this.userId,
+      this.invoice,
+      this.acceptedDate,
+      this.bank,
+      this.transactionRef,
+      this.date,
+      this.packageMonth,
+      this.status,
+      this.confirmed,
+      this.email,
+      this.depositedByName});
 
-  factory PaymentModel.fromJson(dynamic json){
+  factory PaymentModel.fromJson(dynamic json) {
     return PaymentModel(
-      userId: json['userId'],
-      acceptedDate: json['status']==1 ? DateTime.fromMicrosecondsSinceEpoch(json['acceptedDate'].microsecondsSinceEpoch) : null,
-      bank: json['bank'],
-      date: DateTime.fromMicrosecondsSinceEpoch(json['date'].microsecondsSinceEpoch),
-      packageMonth: json['packageMonth'],
-      status: json['status'],
-      confirmed: json['confirmed'],
-      invoice: json['invoice'],
-      transactionRef: json['confirmed'] ? json['transactionRef'] : "",
-      email: json['email'],
-      depositedByName: json['depositedByName']
-    );
+        userId: json['userId'],
+        acceptedDate: json['status'] == 1
+            ? DateTime.fromMicrosecondsSinceEpoch(
+                json['acceptedDate'].microsecondsSinceEpoch)
+            : null,
+        bank: json['bank'],
+        date: DateTime.fromMicrosecondsSinceEpoch(
+            json['date'].microsecondsSinceEpoch),
+        packageMonth: json['packageMonth'],
+        status: json['status'],
+        confirmed: json['confirmed'],
+        invoice: json['invoice'],
+        transactionRef: json['confirmed'] ? json['transactionRef'] : "",
+        email: json['email'],
+        depositedByName: json['depositedByName']);
   }
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         'userId': userId,
         'acceptedDate': acceptedDate,
         'bank': bank,
@@ -44,6 +56,4 @@ class PaymentModel{
         'email': email,
         'depositedByName': depositedByName,
       };
-
-
 }

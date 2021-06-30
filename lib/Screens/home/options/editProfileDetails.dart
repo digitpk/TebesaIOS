@@ -1,10 +1,7 @@
 import 'package:dating/Models/userModel.dart';
-import 'package:dating/Screens/registration/RegistrationState.dart';
-import 'package:dating/Screens/registration/registrationDataState.dart';
 import 'package:dating/Services/databaseService.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_masked_formatter/multi_masked_formatter.dart';
-import 'package:provider/provider.dart';
 import 'package:spring_button/spring_button.dart';
 
 import 'lang.dart';

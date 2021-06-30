@@ -4,10 +4,10 @@ import 'package:dating/Services/authService.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 import 'package:spring_button/spring_button.dart';
+
 import 'AuthState.dart';
 
 class SignIn extends StatefulWidget {
@@ -229,7 +229,7 @@ class _SignInState extends State<SignIn> {
                             //       });
                             //     });
                             // picker.showCountryPicker();
-                           },
+                          },
                         ),
                         contentPadding:
                             EdgeInsets.only(left: 20.0, right: 20.0, top: 10),
@@ -276,7 +276,7 @@ class _SignInState extends State<SignIn> {
                         animationDuration: Duration(milliseconds: 300),
                         backgroundColor: Colors.transparent,
                         enableActiveFill: true,
-                   controller: _verify,
+                        controller: _verify,
                         onCompleted: (v) {
                           try {
                             _authService.signInWithOTP(_opt, _verificationId);
@@ -391,14 +391,21 @@ class _SignInState extends State<SignIn> {
 
               Spacer(),
 
-           Center(
-             child: TextButton(
-               child: Text('Anon Sign-In', style: TextStyle(color: Colors.grey[700], letterSpacing: 1.0, fontSize: 20.0, fontWeight: FontWeight.w400),),
-               onPressed: () async{
-                 await _authService.signInAnon();
-               },
-             ),
-           ),
+              Center(
+                child: TextButton(
+                  child: Text(
+                    'Anon Sign-In',
+                    style: TextStyle(
+                        color: Colors.grey[700],
+                        letterSpacing: 1.0,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w400),
+                  ),
+                  onPressed: () async {
+                    await _authService.signInAnon();
+                  },
+                ),
+              ),
             ],
           ),
         ),

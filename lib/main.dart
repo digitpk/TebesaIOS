@@ -55,7 +55,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ],
       child: MaterialApp(
-          title: 'Flutter Demo',
+          title: 'Tebesa Dating',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primarySwatch: Colors.pink,

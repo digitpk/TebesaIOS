@@ -2,8 +2,7 @@ import 'package:dating/Models/userModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 
-class RegistrationDataState with ChangeNotifier{
-
+class RegistrationDataState with ChangeNotifier {
   String gender = '';
   String interest = '';
 
@@ -14,13 +13,13 @@ class RegistrationDataState with ChangeNotifier{
 
   List<String> photos = [];
 
-  void AddPageOneData(String gd, String ints){
+  void AddPageOneData(String gd, String ints) {
     gender = gd;
     interest = ints;
     notifyListeners();
   }
 
-  void AddPageTwoData(String eml, String fNm, String bD, String bo){
+  void AddPageTwoData(String eml, String fNm, String bD, String bo) {
     email = eml;
     fullName = fNm;
     bDate = bD;
@@ -28,11 +27,18 @@ class RegistrationDataState with ChangeNotifier{
     notifyListeners();
   }
 
-  void AddPageThreeData(List<String> phts){
+  void AddPageThreeData(List<String> phts) {
     photos = phts;
     notifyListeners();
   }
 
-  UserModel get getRegistrationData => UserModel(uid: FirebaseAuth.instance.currentUser.uid, email: email, fullName: fullName, bDate: bDate, gender: gender, interest: interest, photos: photos, bio: bio);
-
+  UserModel get getRegistrationData => UserModel(
+      uid: FirebaseAuth.instance.currentUser.uid,
+      email: email,
+      fullName: fullName,
+      bDate: bDate,
+      gender: gender,
+      interest: interest,
+      photos: photos,
+      bio: bio);
 }

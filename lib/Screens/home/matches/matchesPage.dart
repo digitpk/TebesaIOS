@@ -14,12 +14,16 @@ class _MatchesPageState extends State<MatchesPage> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser.uid.toString()).snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection('users')
+            .doc(FirebaseAuth.instance.currentUser.uid.toString())
+            .snapshots(),
         builder: (context, snapshot) {
-          if(snapshot.data==null){
+          if (snapshot.data == null) {
             return Container(
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
@@ -55,7 +59,8 @@ class _MatchesPageState extends State<MatchesPage> {
                                       color: Colors.white,
                                     ),
                                     const Padding(
-                                      padding: EdgeInsets.symmetric(vertical: 5.0),
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 5.0),
                                     ),
                                     Container(
                                       width: 100.0,
@@ -75,10 +80,17 @@ class _MatchesPageState extends State<MatchesPage> {
                 ],
               ),
             );
-          }else{
-            if(snapshot.data['matches'].length==0){
+          } else {
+            if (snapshot.data['matches'].length == 0) {
               return Center(
-                child: Text('No Matches', style: TextStyle(fontWeight: FontWeight.w300, color: Colors.grey[500], fontSize: 25.0, letterSpacing: 1.0),),
+                child: Text(
+                  'No Matches',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      color: Colors.grey[500],
+                      fontSize: 25.0,
+                      letterSpacing: 1.0),
+                ),
               );
             }
             return GridView.builder(
@@ -88,29 +100,31 @@ class _MatchesPageState extends State<MatchesPage> {
                   mainAxisSpacing: 10.0,
                   crossAxisSpacing: 15.0,
                   crossAxisCount: 2,
-                  childAspectRatio: 0.7
-              ),
-              itemBuilder: (context, index){
+                  childAspectRatio: 0.7),
+              itemBuilder: (context, index) {
                 return StreamBuilder(
-                    stream: FirebaseFirestore.instance.doc(snapshot.data['matches'][index]).snapshots(),
+                    stream: FirebaseFirestore.instance
+                        .doc(snapshot.data['matches'][index])
+                        .snapshots(),
                     builder: (context, snapshot2) {
-                      if(snapshot2.data==null){
+                      if (snapshot2.data == null) {
                         return Center(
                           child: CircularProgressIndicator(),
                         );
-                      }else{
-                        UserModel userModel = UserModel.fromJson(snapshot2.data);
+                      } else {
+                        UserModel userModel =
+                            UserModel.fromJson(snapshot2.data);
                         return Container(
-                          padding:EdgeInsets.all(5.0),
-                          child: MatchItem(otherUser: userModel,),
+                          padding: EdgeInsets.all(5.0),
+                          child: MatchItem(
+                            otherUser: userModel,
+                          ),
                         );
                       }
-                    }
-                );
+                    });
               },
             );
           }
-        }
-    );
+        });
   }
 }
